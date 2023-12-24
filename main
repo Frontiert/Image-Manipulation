@@ -1,0 +1,12 @@
+if (window.Worker) {
+    const imageWorker = new Worker('imageWorker.js');
+
+    imageWorker.onmessage = function(event) {
+        console.log('Image processing result:', event.data);
+    };
+
+    const imageData = [ /* Image data */ ];
+    imageWorker.postMessage(imageData); // Send image data for processing
+} else {
+    console.error('Web Workers are not supported in this browser.');
+}
